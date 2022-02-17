@@ -9,7 +9,8 @@ async def server(websocket, path):
     connected.add(websocket)
     try:
         async for message in websocket:
-            print(message)
+            if message == "shutdown":
+                connected.clear()
             #  dont send the message to the sender
             for conn in connected:
                 print(conn)
